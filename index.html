@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book domestic and international flights with exclusive offers and seamless travel experiences. Discover the world with FlyEasy.">
+    <title>FlyEasy - Discover The World</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css?v=2">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="navbar-container" id="navbar">
+        <nav class="navbar">
+            <!-- Left: Logo & Brand -->
+            <a href="#" class="nav-logo" id="nav-logo-link">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#book" class="nav-link active">Book</a></li>
+                <li class="nav-item"><a href="#trips" class="nav-link">Trips</a></li>
+                <li class="nav-item"><a href="#deals" class="nav-link">Deals and Offers</a></li>
+                <li class="nav-item"><a href="#checkin" class="nav-link">Check-in</a></li>
+                <li class="nav-item">
+                    <a href="#rewards" class="nav-link special-rewards">
+                        FlyEasy Rewards
+                        <span class="pulse-dot"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right: Search, Notifications, Profile -->
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="action-icon">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <button class="nav-action-btn" id="notif-toggle" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="action-icon">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notif-badge"></span>
+                </button>
+                <button class="btn btn-primary btn-login" id="login-btn">
+                    <span>Login</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero & Booking Search Wrapper -->
+    <main>
+        <section class="hero-section" id="book">
+            <!-- Animated background glows -->
+            <div class="glow-sphere glow-1"></div>
+            <div class="glow-sphere glow-2"></div>
+
+            <div class="hero-container">
+                <!-- Left Side: Copy, Buttons, Stats -->
+                <div class="hero-content fade-in-up">
+                    <span class="hero-badge">Next-Gen Travel Experience</span>
+                    <h1 class="hero-title">Discover The World <br>With <span class="text-gradient">FlyEasy</span></h1>
+                    <p class="hero-subtitle">Book domestic and international flights with exclusive offers and seamless travel experiences.</p>
+                    
+                    <div class="hero-actions">
+                        <a href="#search-card-anchor" class="btn btn-primary btn-lg">Search Flights</a>
+                        <a href="#deals" class="btn btn-outline btn-lg">Explore Deals</a>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-num" data-val="100">100+</div>
+                            <div class="stat-label">Destinations</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num" data-val="50">50M+</div>
+                            <div class="stat-label">Travelers</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-num">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Interactive Image & Route lines -->
+                <div class="hero-visual fade-in">
+                    <div class="airplane-container">
+                        <img src="assets/hero_airplane.png" alt="FlyEasy Airplane Sunset" class="airplane-img">
+                        <!-- Floating route animations overlay -->
+                        <div class="route-line-overlay">
+                            <svg viewBox="0 0 500 300" class="svg-routes">
+                                <path id="route-path-1" class="route-path" d="M 50 250 Q 200 80 450 150" fill="none" stroke="rgba(56, 189, 248, 0.4)" stroke-width="2" stroke-dasharray="8 6" />
+                                <circle r="5" fill="#38BDF8" class="route-dot">
+                                    <animateMotion dur="6s" repeatCount="indefinite" path="M 50 250 Q 200 80 450 150" />
+                                </circle>
+                                <path id="route-path-2" class="route-path" d="M 80 50 Q 300 220 420 80" fill="none" stroke="rgba(59, 130, 246, 0.3)" stroke-width="2" stroke-dasharray="6 4" />
+                                <circle r="4" fill="#3B82F6" class="route-dot">
+                                    <animateMotion dur="8s" repeatCount="indefinite" path="M 80 50 Q 300 220 420 80" />
+                                </circle>
+                            </svg>
+                        </div>
+                        <!-- Subtle animated clouds -->
+                        <div class="ambient-cloud cloud-1"></div>
+                        <div class="ambient-cloud cloud-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Booking Search Card overlapping hero section -->
+            <div class="search-card-wrapper fade-in-up" id="search-card-anchor">
+                <div class="search-card">
+                    <!-- Service Category Tabs -->
+                    <div class="search-tabs">
+                        <button class="search-tab active" id="tab-flights" data-tab="flights">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
+                            </svg>
+                            <span>Flights</span>
+                        </button>
+                        <button class="search-tab" id="tab-hotels" data-tab="hotels">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="9" y1="3" x2="9" y2="21"></line>
+                                <line x1="15" y1="3" x2="15" y2="21"></line>
+                                <line x1="3" y1="9" x2="21" y2="9"></line>
+                                <line x1="3" y1="15" x2="21" y2="15"></line>
+                            </svg>
+                            <span>Hotels</span>
+                        </button>
+                        <button class="search-tab" id="tab-cabs" data-tab="cabs">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                                <rect x="1" y="3" width="15" height="13" rx="2" ry="2"></rect>
+                                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                            </svg>
+                            <span>Cabs</span>
+                        </button>
+                    </div>
+
+                    <!-- Search Fields Configuration Form -->
+                    <form class="search-form" id="search-form" onsubmit="event.preventDefault();">
+                        <!-- Upper Control: Trip Type & Options -->
+                        <div class="search-controls" id="trip-types-container">
+                            <label class="trip-type-label">
+                                <input type="radio" name="trip-type" value="oneway" checked>
+                                <span class="custom-radio">One Way</span>
+                            </label>
+                            <label class="trip-type-label">
+                                <input type="radio" name="trip-type" value="roundtrip">
+                                <span class="custom-radio">Round Trip</span>
+                            </label>
+                            <label class="trip-type-label">
+                                <input type="radio" name="trip-type" value="multicity">
+                                <span class="custom-radio">Multi City</span>
+                            </label>
+                        </div>
+
+                        <!-- Core Inputs Grid -->
+                        <div class="search-grid" id="search-inputs-grid">
+                            <!-- From Field -->
+                            <div class="input-group" id="from-group">
+                                <label for="input-from" class="input-label">From</label>
+                                <div class="input-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="field-icon">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <input type="text" id="input-from" placeholder="Origin Airport (e.g. DEL)" value="Delhi (DEL)">
+                                </div>
+                            </div>
+
+                            <!-- Swap Airport Button -->
+                            <div class="swap-btn-container">
+                                <button type="button" class="swap-btn" id="swap-airports" aria-label="Swap Airport Locations">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="swap-icon">
+                                        <path d="M17 3L21 7L17 11M21 7H9M7 21L3 17L7 13M3 17H15" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- To Field -->
+                            <div class="input-group" id="to-group">
+                                <label for="input-to" class="input-label">To</label>
+                                <div class="input-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="field-icon">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <input type="text" id="input-to" placeholder="Destination Airport (e.g. BOM)" value="Mumbai (BOM)">
+                                </div>
+                            </div>
+
+                            <!-- Departure Date -->
+                            <div class="input-group" id="dep-group">
+                                <label for="input-dep" class="input-label">Departure Date</label>
+                                <div class="input-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="field-icon">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <input type="date" id="input-dep" value="2026-07-05">
+                                </div>
+                            </div>
+
+                            <!-- Return Date -->
+                            <div class="input-group" id="ret-group">
+                                <label for="input-ret" class="input-label">Return Date</label>
+                                <div class="input-wrapper disabled" id="ret-input-wrapper">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="field-icon">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <input type="date" id="input-ret" disabled value="2026-07-12">
+                                </div>
+                            </div>
+
+                            <!-- Travellers & Class Selector -->
+                            <div class="input-group" id="class-group">
+                                <label class="input-label">Travellers & Class</label>
+                                <div class="input-wrapper cursor-pointer" id="travellers-class-trigger">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="field-icon">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="9" cy="7" r="4"></circle>
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                    </svg>
+                                    <span id="travellers-class-value" class="text-val">1 Traveller, Economy</span>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron-icon">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <!-- Dropdown UI -->
+                                <div class="custom-dropdown" id="travellers-dropdown">
+                                    <div class="dropdown-section">
+                                        <div class="section-row">
+                                            <div>
+                                                <div class="row-title">Adults</div>
+                                                <div class="row-subtitle">Age 12+</div>
+                                            </div>
+                                            <div class="counter-control">
+                                                <button type="button" class="counter-btn minus" data-type="adults">-</button>
+                                                <span class="counter-val" id="count-adults">1</span>
+                                                <button type="button" class="counter-btn plus" data-type="adults">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="section-row">
+                                            <div>
+                                                <div class="row-title">Children</div>
+                                                <div class="row-subtitle">Age 2-12</div>
+                                            </div>
+                                            <div class="counter-control">
+                                                <button type="button" class="counter-btn minus" data-type="children">-</button>
+                                                <span class="counter-val" id="count-children">0</span>
+                                                <button type="button" class="counter-btn plus" data-type="children">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-divider"></div>
+                                    <div class="dropdown-section">
+                                        <div class="class-options">
+                                            <label class="class-option">
+                                                <input type="radio" name="cabin-class" value="Economy" checked>
+                                                <span>Economy</span>
+                                            </label>
+                                            <label class="class-option">
+                                                <input type="radio" name="cabin-class" value="Premium Economy">
+                                                <span>Premium Economy</span>
+                                            </label>
+                                            <label class="class-option">
+                                                <input type="radio" name="cabin-class" value="Business">
+                                                <span>Business</span>
+                                            </label>
+                                            <label class="class-option">
+                                                <input type="radio" name="cabin-class" value="First Class">
+                                                <span>First Class</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-footer">
+                                        <button type="button" class="btn btn-primary btn-sm" id="dropdown-done">Done</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Submit -->
+                        <div class="search-submit-container">
+                            <button type="submit" class="btn btn-primary btn-search" id="btn-submit-search">
+                                <span>Search Flights</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-btn-icon">
+                                    <circle cx="11" cy="11" r="8"></circle>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recommended Destinations Section -->
+        <section class="section recommended-section">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="section-subtitle">Awaits Your Escape</span>
+                        <h2 class="section-title">Recommended Destinations</h2>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="nav-arrow" id="dest-prev" aria-label="Previous Destinations">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </button>
+                        <button class="nav-arrow" id="dest-next" aria-label="Next Destinations">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="destinations-carousel-wrapper" id="dest-carousel-wrapper">
+                    <div class="destinations-track" id="dest-track">
+                        <!-- Goa Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/goa.png" alt="Goa Sunset Beach" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.8
+                                    </span>
+                                    <span class="dest-price">₹4,999</span>
+                                </div>
+                                <h3 class="dest-name">Goa, India</h3>
+                                <p class="dest-desc">Sun-kissed beaches, golden sand, and vibrant coastal culture.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Dubai Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/dubai.png" alt="Dubai City Skyline" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.9
+                                    </span>
+                                    <span class="dest-price">₹18,500</span>
+                                </div>
+                                <h3 class="dest-name">Dubai, UAE</h3>
+                                <p class="dest-desc">Futuristic architectural wonders, shopping festivals, and desert safaris.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Bali Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/bali.png" alt="Bali Temple" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.7
+                                    </span>
+                                    <span class="dest-price">₹22,000</span>
+                                </div>
+                                <h3 class="dest-name">Bali, Indonesia</h3>
+                                <p class="dest-desc">Ancient temples, scenic rice terraces, and mystical forests.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Maldives Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/maldives.png" alt="Maldives Ocean Villas" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.9
+                                    </span>
+                                    <span class="dest-price">₹25,999</span>
+                                </div>
+                                <h3 class="dest-name">Maldives</h3>
+                                <p class="dest-desc">Luxury overwater bungalows, turquoise lagoons, and colorful reefs.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Singapore Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/singapore.png" alt="Singapore Gardens by the Bay" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.8
+                                    </span>
+                                    <span class="dest-price">₹15,499</span>
+                                </div>
+                                <h3 class="dest-name">Singapore</h3>
+                                <p class="dest-desc">Cosmopolitan island-nation featuring futuristic eco-gardens.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+
+                        <!-- Kashmir Card -->
+                        <div class="dest-card scroll-reveal">
+                            <div class="dest-image-wrapper">
+                                <img src="assets/kashmir.png" alt="Kashmir Dal Lake" class="dest-image">
+                                <span class="discount-badge">30% OFF</span>
+                            </div>
+                            <div class="dest-body">
+                                <div class="dest-meta">
+                                    <span class="dest-rating">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                                        4.9
+                                    </span>
+                                    <span class="dest-price">₹7,800</span>
+                                </div>
+                                <h3 class="dest-name">Kashmir, India</h3>
+                                <p class="dest-desc">Misty mountains, floating houseboats, and alpine valleys.</p>
+                                <button class="btn btn-outline btn-sm w-full btn-book-dest">Book Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exclusive Deals & Offers Section -->
+        <section class="section deals-section" id="deals">
+            <div class="container">
+                <div class="section-header">
+                    <div>
+                        <span class="section-subtitle">Save Big On Next Flight</span>
+                        <h2 class="section-title">Exclusive Deals & Offers</h2>
+                    </div>
+                    <div class="carousel-nav">
+                        <button class="nav-arrow" id="deals-prev" aria-label="Previous Deals">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                <line x1="19" y1="12" x2="5" y2="12"></line>
+                                <polyline points="12 19 5 12 12 5"></polyline>
+                            </svg>
+                        </button>
+                        <button class="nav-arrow" id="deals-next" aria-label="Next Deals">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="deals-carousel-wrapper" id="deals-carousel-wrapper">
+                    <div class="deals-track" id="deals-track">
+                        <!-- Offer 1 -->
+                        <div class="deal-card scroll-reveal glowing-card-blue">
+                            <div class="deal-badge">Summer Special</div>
+                            <h3 class="deal-title">Flat 25% OFF on Goa Flights</h3>
+                            <p class="deal-desc">Book beachside getaways with exclusive premium partner rates. Valid for flight bookings this weekend.</p>
+                            <div class="deal-footer">
+                                <span class="deal-code">Use Code: <strong>BEACH25</strong></span>
+                                <button class="btn btn-primary btn-sm">Claim Offer</button>
+                            </div>
+                        </div>
+
+                        <!-- Offer 2 -->
+                        <div class="deal-card scroll-reveal glowing-card-sky">
+                            <div class="deal-badge">Global Access</div>
+                            <h3 class="deal-title">Save ₹5,000 on International Trips</h3>
+                            <p class="deal-desc">Plan your long-distance journeys with special ticket class waivers. Minimum transaction of ₹40,000.</p>
+                            <div class="deal-footer">
+                                <span class="deal-code">Use Code: <strong>FLYGLOBAL</strong></span>
+                                <button class="btn btn-primary btn-sm">Claim Offer</button>
+                            </div>
+                        </div>
+
+                        <!-- Offer 3 -->
+                        <div class="deal-card scroll-reveal glowing-card-indigo">
+                            <div class="deal-badge">Student Fare</div>
+                            <h3 class="deal-title">Student Special Fares</h3>
+                            <p class="deal-desc">Get an extra 10kg baggage allowance plus 10% instant discount on bookings. Valid student ID required.</p>
+                            <div class="deal-footer">
+                                <span class="deal-code">Use Code: <strong>STUDENTFLY</strong></span>
+                                <button class="btn btn-primary btn-sm">Claim Offer</button>
+                            </div>
+                        </div>
+
+                        <!-- Offer 4 -->
+                        <div class="deal-card scroll-reveal glowing-card-purple">
+                            <div class="deal-badge">Family Pack</div>
+                            <h3 class="deal-title">Family Discount Packages</h3>
+                            <p class="deal-desc">Book for 3 or more members and enjoy free advanced seat selection and complimentary meals onboard.</p>
+                            <div class="deal-footer">
+                                <span class="deal-code">Use Code: <strong>FAMTRIP</strong></span>
+                                <button class="btn btn-primary btn-sm">Claim Offer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="brand-name">FlyEasy</span>
+                    </a>
+                    <p class="footer-tagline">Making luxury air travel seamless, comfortable, and accessible. Discover your next getaway.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-icon"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-icon"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="social-icon"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title">Book</h4>
+                    <ul>
+                        <li><a href="#">Flights</a></li>
+                        <li><a href="#">Hotels</a></li>
+                        <li><a href="#">Cabs</a></li>
+                        <li><a href="#">Travel Insurance</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title">Services</h4>
+                    <ul>
+                        <li><a href="#">Flight Status</a></li>
+                        <li><a href="#">Check-in online</a></li>
+                        <li><a href="#">Baggage Rules</a></li>
+                        <li><a href="#">Special Assistance</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4 class="footer-title">Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press Centre</a></li>
+                        <li><a href="#">FlyEasy Rewards</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-divider"></div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 FlyEasy Airlines. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Terms of Use</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookie settings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script file -->
+    <script src="app.js"></script>
+</body>
+</html>
