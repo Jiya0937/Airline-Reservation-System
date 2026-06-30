@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage your FlyEasy account profile details and booking settings.">
+    <title>FlyEasy - Account Profile</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles + profile styles -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./profile.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Book Flights</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="btn btn-outline btn-sm" id="btn-logout-header">Log Out</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Profile Container -->
+    <main class="profile-main-container">
+        <!-- Animated background glows -->
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+
+        <div class="profile-layout-container">
+            <!-- Left Panel: User Quick Info Card -->
+            <aside class="profile-sidebar">
+                <div class="profile-user-card">
+                    <div class="avatar-circle">
+                        <span id="avatar-initials">JD</span>
+                    </div>
+                    <h3 id="sidebar-user-name">John Doe</h3>
+                    <p id="sidebar-user-email">john.doe@example.com</p>
+                    <div class="profile-meta-list">
+                        <div class="meta-item">
+                            <span class="meta-label">Location</span>
+                            <span class="meta-value" id="sidebar-user-loc">Mumbai, India</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Member Since</span>
+                            <span class="meta-value" id="sidebar-user-since">July 2026</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline w-full btn-logout-main" id="btn-logout">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                            <polyline points="16 17 21 12 16 7"></polyline>
+                            <line x1="21" y1="12" x2="9" y2="12"></line>
+                        </svg>
+                        <span>Log Out</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Right Panel: Edit Details & Password change Forms -->
+            <div class="profile-form-content">
+                <!-- Notifications -->
+                <div class="alert-box error" id="alert-error" style="display: none;"></div>
+                <div class="alert-box success" id="alert-success" style="display: none;"></div>
+
+                <!-- Card 1: Edit Profile details -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2>Personal Information</h2>
+                        <p>Update your general contact details. These are used to auto-fill details during bookings.</p>
+                    </div>
+
+                    <form id="edit-profile-form" class="profile-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="profile-name">Full Name</label>
+                                <div class="input-field-wrapper">
+                                    <input type="text" id="profile-name" required placeholder="John Doe">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile-email">Email Address (Cannot change)</label>
+                                <div class="input-field-wrapper disabled">
+                                    <input type="email" id="profile-email" disabled placeholder="name@domain.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="profile-mobile">Mobile Number</label>
+                                <div class="input-field-wrapper">
+                                    <input type="tel" id="profile-mobile" required placeholder="+91 9876543210">
+                                </div>
+                            </div>
+                            <div class="form-group country-select-group">
+                                <label>Country</label>
+                                <div class="input-field-wrapper dropdown-trigger" id="country-trigger">
+                                    <span id="selected-country" class="selected-val">Select Country</span>
+                                    <input type="hidden" id="profile-country" required value="">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron-icon">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </div>
+                                <div class="search-dropdown-menu" id="country-dropdown-menu">
+                                    <div class="dropdown-search-box">
+                                        <input type="text" id="country-search-input" placeholder="Search country...">
+                                    </div>
+                                    <ul class="country-list" id="country-list">
+                                        <!-- Populated dynamically -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profile-city">City</label>
+                            <div class="input-field-wrapper">
+                                <input type="text" id="profile-city" required placeholder="Mumbai">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-save" id="btn-save-profile">
+                            <span>Save Changes</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Card 2: Change Password -->
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2>Change Password</h2>
+                        <p>Modify your login password credentials. Require verifying current password.</p>
+                    </div>
+
+                    <form id="change-password-form" class="profile-form">
+                        <div class="form-group">
+                            <label for="pass-old">Current Password *</label>
+                            <div class="input-field-wrapper">
+                                <input type="password" id="pass-old" required placeholder="Enter Current Password">
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="pass-new">New Password *</label>
+                                <div class="input-field-wrapper">
+                                    <input type="password" id="pass-new" required placeholder="Enter New Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass-confirm">Confirm New Password *</label>
+                                <div class="input-field-wrapper">
+                                    <input type="password" id="pass-confirm" required placeholder="Confirm New Password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-outline btn-save" id="btn-save-password">
+                            <span>Update Password</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 FlyEasy Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script File -->
+    <script type="module" src="./profile.js"></script>
+</body>
+</html>

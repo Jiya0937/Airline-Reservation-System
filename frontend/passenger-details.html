@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Provide passenger details to complete your FlyEasy flight booking.">
+    <title>FlyEasy - Passenger Details</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles + page specific styles -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./passenger-details.css">
+</head>
+<body>
+    <!-- Fixed Top Navigation Bar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar details-navbar">
+            <!-- Left: Logo & Brand -->
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+
+            <!-- Center: Checkout Stepper Progress Indicator -->
+            <div class="checkout-stepper">
+                <div class="step completed">
+                    <span class="step-num">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:12px; height:12px;">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </span>
+                    <span class="step-text">Select Flight</span>
+                </div>
+                <div class="step-line active"></div>
+                <div class="step active">
+                    <span class="step-num">2</span>
+                    <span class="step-text">Passengers</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <span class="step-text">Payment</span>
+                </div>
+            </div>
+
+            <!-- Right: Support Trigger -->
+            <div class="nav-actions">
+                <button class="btn btn-outline btn-sm support-btn">
+                    <span>Help Desk</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Container -->
+    <main class="details-main-container">
+        <div class="details-layout">
+            <!-- Left Column: Form & Inputs -->
+            <div class="details-form-content">
+                <h1 class="page-title">Passenger Details</h1>
+                <p class="page-subtitle">Please enter correct passenger details matching official ID (e.g. passport or Aadhar card).</p>
+
+                <form id="passenger-info-form" class="details-card-form">
+                    <!-- Section: Contact Details -->
+                    <div class="form-section-card">
+                        <div class="section-title-row">
+                            <span class="section-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px; height:20px;">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </span>
+                            <h2>Primary Contact Info</h2>
+                        </div>
+                        
+                        <div class="form-row-grid">
+                            <div class="form-input-box">
+                                <label for="contact-email">Email Address *</label>
+                                <input type="email" id="contact-email" required placeholder="name@domain.com">
+                            </div>
+                            <div class="form-input-box">
+                                <label for="contact-phone">Phone Number *</label>
+                                <input type="tel" id="contact-phone" required placeholder="+91 98765 43210">
+                            </div>
+                        </div>
+                        <div class="form-row-grid">
+                            <div class="form-input-box">
+                                <label for="contact-country">Country *</label>
+                                <input type="text" id="contact-country" required placeholder="Country">
+                            </div>
+                            <div class="form-input-box">
+                                <label for="contact-city">City *</label>
+                                <input type="text" id="contact-city" required placeholder="City">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Passenger 1 Info -->
+                    <div class="form-section-card">
+                        <div class="section-title-row">
+                            <span class="section-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px; height:20px;">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </span>
+                            <h2>Passenger 1 (Adult, Primary Traveller)</h2>
+                        </div>
+                        
+                        <div class="form-row-grid tri-grid">
+                            <div class="form-input-box">
+                                <label for="p1-title">Title *</label>
+                                <select id="p1-title" required>
+                                    <option value="Mr">Mr.</option>
+                                    <option value="Ms">Ms.</option>
+                                    <option value="Mrs">Mrs.</option>
+                                    <option value="Dr">Dr.</option>
+                                </select>
+                            </div>
+                            <div class="form-input-box">
+                                <label for="p1-first">First / Given Name *</label>
+                                <input type="text" id="p1-first" required placeholder="Enter First Name">
+                            </div>
+                            <div class="form-input-box">
+                                <label for="p1-last">Last / Surname *</label>
+                                <input type="text" id="p1-last" required placeholder="Enter Last Name">
+                            </div>
+                        </div>
+
+                        <div class="form-row-grid">
+                            <div class="form-input-box">
+                                <label for="p1-gender">Gender *</label>
+                                <select id="p1-gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-input-box">
+                                <label for="p1-dob">Date of Birth *</label>
+                                <input type="date" id="p1-dob" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section: Additional Details / Special Requests -->
+                    <div class="form-section-card">
+                        <div class="section-title-row">
+                            <span class="section-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px; height:20px;">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </span>
+                            <h2>Travel Documents &amp; Preferences</h2>
+                        </div>
+                        
+                        <div class="form-row-grid">
+                            <div class="form-input-box">
+                                <label for="p1-nationality">Nationality *</label>
+                                <input type="text" id="p1-nationality" required placeholder="Enter Nationality">
+                            </div>
+                            <div class="form-input-box">
+                                <label for="p1-doc-no">Passport / National ID Number (Optional)</label>
+                                <input type="text" id="p1-doc-no" placeholder="Enter ID/Passport Number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row-grid">
+                            <div class="form-input-box">
+                                <label for="p1-seat">Seat Preference *</label>
+                                <select id="p1-seat" required>
+                                    <option value="">Select Seat</option>
+                                    <option value="Window">Window Seat</option>
+                                    <option value="Aisle">Aisle Seat</option>
+                                    <option value="Middle">Middle Seat</option>
+                                    <option value="Extra Legroom">Extra Legroom Seat</option>
+                                </select>
+                            </div>
+                            <div class="form-input-box">
+                                <label for="p1-meal">Meal Preference</label>
+                                <select id="p1-meal">
+                                    <option value="No Preference">No Special Meal Preference</option>
+                                    <option value="Vegetarian Meal">Vegetarian Meal (VGML)</option>
+                                    <option value="Non-Veg Halal">Non-Vegetarian Halal Meal</option>
+                                    <option value="Asian Veg">Asian Vegetarian Meal (AVML)</option>
+                                    <option value="Fruit Platter">Fruit Platter (FPML)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-input-box checkbox-row">
+                            <input type="checkbox" id="pref-wheelchair">
+                            <label for="pref-wheelchair">I require special assistance / wheelchair services at the airport.</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg w-full btn-submit-passenger" id="btn-submit-booking">
+                        <span>Confirm &amp; Proceed to Payment</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Column: Selected Flight Card (Sticky Summary) -->
+            <aside class="details-summary-sidebar">
+                <div class="sticky-summary-card" id="details-flight-summary">
+                    <div class="summary-header">
+                        <h2>Fare Review</h2>
+                        <span class="badge badge-accent">1 Flight Selected</span>
+                    </div>
+
+                    <div class="summary-content">
+                        <!-- Flight Selection details -->
+                        <div class="summary-selected-flight">
+                            <div class="summary-flight-header">
+                                <div class="summary-logo" id="checkout-airline-logo">
+                                    <!-- SVG Logo -->
+                                </div>
+                                <div>
+                                    <div class="summary-airline-name" id="checkout-airline-name">FlyEasy Airways</div>
+                                    <div class="summary-flight-number" id="checkout-flight-number">FE 201</div>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-route-times">
+                                <div class="route-node text-left">
+                                    <div class="node-time" id="checkout-dep-time">09:55</div>
+                                    <div class="node-code" id="checkout-dep-code">DEL</div>
+                                </div>
+                                <div class="summary-duration-arrow">
+                                    <span id="checkout-duration">2h 10m</span>
+                                    <div class="summary-line"></div>
+                                </div>
+                                <div class="route-node text-right">
+                                    <div class="node-time" id="checkout-arr-time">12:05</div>
+                                    <div class="node-code" id="checkout-arr-code">BOM</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-details-list">
+                            <div class="summary-detail-row">
+                                <span class="detail-label">Fare Class</span>
+                                <span class="detail-value" id="checkout-cabin-class">Economy</span>
+                            </div>
+                            <div class="summary-detail-row">
+                                <span class="detail-label">Travel Date</span>
+                                <span class="detail-value" id="checkout-travel-date">1 Jul 2026</span>
+                            </div>
+                            <div class="summary-detail-row">
+                                <span class="detail-label">Base Fare</span>
+                                <span class="detail-value" id="checkout-base-fare">₹7,236</span>
+                            </div>
+                            <div class="summary-detail-row">
+                                <span class="detail-label">Taxes &amp; Levies</span>
+                                <span class="detail-value" id="checkout-taxes">₹1,250</span>
+                            </div>
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-total-row">
+                            <span class="total-label">Payable Amount</span>
+                            <div class="total-price-box">
+                                <span class="total-val" id="checkout-total-fare">₹8,486</span>
+                                <span class="total-subtext">Inclusive of GST</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Success Modal Overlay -->
+    <div class="modal-overlay" id="success-booking-modal">
+        <div class="modal-card success-card">
+            <div class="success-icon-container">
+                <div class="success-glow"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="success-icon">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h2 class="success-title">Booking Confirmed!</h2>
+            <p class="success-desc">Thank you for booking with FlyEasy. Your flight ticket has been reserved. A confirmation email and e-ticket have been sent to your primary email address.</p>
+            
+            <div class="success-summary-box">
+                <div class="success-sum-row">
+                    <span>Flight:</span>
+                    <strong id="success-flight-no">FE 201</strong>
+                </div>
+                <div class="success-sum-row">
+                    <span>Route:</span>
+                    <strong id="success-route">DEL &rarr; BOM</strong>
+                </div>
+                <div class="success-sum-row">
+                    <span>Passenger:</span>
+                    <strong id="success-passenger-name">Mr. John Doe</strong>
+                </div>
+                <div class="success-sum-row">
+                    <span>Booking Ref:</span>
+                    <strong style="color: var(--accent-sky);" id="success-pnr">FE4A9B</strong>
+                </div>
+            </div>
+
+            <button class="btn btn-primary w-full btn-home-redirect" id="btn-return-home">Back to Homepage</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 FlyEasy Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script File -->
+    <script type="module" src="./passenger-details.js"></script>
+</body>
+</html>

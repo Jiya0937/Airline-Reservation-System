@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a FlyEasy account to start booking domestic and international flights.">
+    <title>FlyEasy - Create Account</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles + signup styles -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./signup.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar">
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline btn-sm">Log In</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Signup Container -->
+    <main class="signup-main-container">
+        <!-- Animated background glows -->
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+
+        <div class="signup-card-container">
+            <div class="signup-header">
+                <h2>Create Your FlyEasy Account</h2>
+                <p>Register to unlock flight search, bookings, and premium features.</p>
+            </div>
+
+            <!-- Error/Success Alerts -->
+            <div class="alert-box error" id="alert-error" style="display: none;"></div>
+            <div class="alert-box success" id="alert-success" style="display: none;"></div>
+
+            <form id="signup-form" class="signup-form">
+                <!-- Row 1: Full Name & Email -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-name">Full Name *</label>
+                        <div class="input-field-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <input type="text" id="reg-name" required placeholder="John Doe">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reg-email">Email Address *</label>
+                        <div class="input-field-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <input type="email" id="reg-email" required placeholder="name@domain.com">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2: Passwords -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-password">Password *</label>
+                        <div class="input-field-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <input type="password" id="reg-password" required placeholder="Min 8 characters">
+                        </div>
+                        <!-- Password Strength Indicator -->
+                        <div class="strength-meter-container">
+                            <div class="strength-bar" id="strength-bar"></div>
+                            <span class="strength-text" id="strength-text">Password Strength</span>
+                        </div>
+                        <!-- Password Requirements Checklist -->
+                        <ul class="password-reqs">
+                            <li id="req-length" class="invalid">Minimum 8 characters</li>
+                            <li id="req-upper" class="invalid">One uppercase letter</li>
+                            <li id="req-number" class="invalid">One number</li>
+                            <li id="req-special" class="invalid">One special character</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reg-confirm-password">Confirm Password *</label>
+                        <div class="input-field-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <input type="password" id="reg-confirm-password" required placeholder="Confirm Password">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3: Mobile & Country -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="reg-mobile">Mobile Number *</label>
+                        <div class="input-field-wrapper">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <input type="tel" id="reg-mobile" required placeholder="+91 9876543210">
+                        </div>
+                    </div>
+
+                    <div class="form-group country-select-group">
+                        <label>Country *</label>
+                        <div class="input-field-wrapper dropdown-trigger" id="country-trigger">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span id="selected-country" class="placeholder-text">Select Country</span>
+                            <input type="hidden" id="reg-country" required value="">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="chevron-icon">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </div>
+                        
+                        <!-- Searchable Country Dropdown Menu -->
+                        <div class="search-dropdown-menu" id="country-dropdown-menu">
+                            <div class="dropdown-search-box">
+                                <input type="text" id="country-search-input" placeholder="Search country...">
+                            </div>
+                            <ul class="country-list" id="country-list">
+                                <!-- Populated dynamically by javascript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 4: City -->
+                <div class="form-group">
+                    <label for="reg-city">City *</label>
+                    <div class="input-field-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="input-icon">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <input type="text" id="reg-city" required placeholder="Enter City">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full btn-signup" id="btn-submit-signup">
+                    <span>Create Account</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="8.5" cy="7" r="4"></circle>
+                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                    </svg>
+                </button>
+            </form>
+
+            <div class="signup-footer">
+                <p>Already have an account? <a href="login.html">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 FlyEasy Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script File -->
+    <script type="module" src="./signup.js"></script>
+</body>
+</html>
