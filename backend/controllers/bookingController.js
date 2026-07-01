@@ -293,7 +293,7 @@ export const getBoardingPass = async (req, res) => {
     }
 
     // Verify ownership
-    if (booking.user_id !== userId) {
+    if (Number(booking.user_id) !== Number(userId)) {
       return res.status(403).json({ message: 'Access Denied: You do not own this booking.' });
     }
 
