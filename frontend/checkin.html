@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your flight bookings, check-in online, view travel history and download boarding passes.">
+    <title>FlyEasy - My Trips & Check-in</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles + page specific styles -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./checkin.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar">
+            <!-- Left: Logo & Brand -->
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#book" class="nav-link">Book</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-trips-link">Trips</a></li>
+                <li class="nav-item"><a href="index.html#deals" class="nav-link">Deals &amp; Offers</a></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="nav-checkin-link">Check-in</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link special-rewards" id="nav-rewards-link">
+                        FlyEasy Rewards
+                        <span class="pulse-dot"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right: Profile / Logout -->
+            <div class="nav-actions">
+                <a href="profile.html" class="nav-action-btn profile-btn" title="Profile">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="action-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                <button class="btn btn-outline btn-sm" id="btn-logout">Log Out</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="dashboard-main-container">
+        <!-- Background Glows -->
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+
+        <div class="dashboard-header-row">
+            <div>
+                <h1 class="dashboard-title">Passenger Dashboard</h1>
+                <p class="dashboard-subtitle">Manage check-in, review travel bookings, and check your rewards.</p>
+            </div>
+
+            <!-- Tab Controls -->
+            <div class="dashboard-tabs">
+                <button class="dash-tab active" data-tab="checkin">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    </svg>
+                    <span>Check-in</span>
+                </button>
+                <button class="dash-tab" data-tab="trips">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>My Bookings &amp; History</span>
+                </button>
+                <button class="dash-tab" data-tab="rewards">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="tab-icon">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    <span>FlyEasy Rewards</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Tab 1: Check-in & Boarding Passes Section -->
+        <section class="dashboard-section active" id="sec-checkin">
+            <h2 class="section-title">Check-in &amp; Boarding Passes</h2>
+            <div class="upcoming-grid" id="upcoming-container">
+                <!-- Loaded dynamically by checkin.js. If no confirmed booking exists, shows a fallback message -->
+                <div class="no-bookings-card glassmorphism" style="grid-column: 1 / -1;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="empty-icon">
+                        <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                    </svg>
+                    <h3>No Upcoming Confirmed Journeys</h3>
+                    <p>Ready to fly? Book your next destination with FlyEasy.</p>
+                    <a href="index.html" class="btn btn-primary">Search Flights Now</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 2: My Bookings & History Section -->
+        <section class="dashboard-section" id="sec-trips">
+            <!-- Travel History (Recent Trips) -->
+            <div class="history-grid-container">
+                <h2 class="section-title">Recent Trips</h2>
+                <div class="history-grid" id="history-grid">
+                    <!-- Dynamically seeded. Example cards if DB yields nothing: -->
+                </div>
+            </div>
+
+            <!-- My Bookings Table -->
+            <div class="bookings-table-container glassmorphism">
+                <h2 class="section-title">All Bookings</h2>
+                <div class="table-wrapper">
+                    <table class="bookings-table">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th>PNR</th>
+                                <th>Flight</th>
+                                <th>Route</th>
+                                <th>Travel Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bookings-table-body">
+                            <!-- Populated dynamically -->
+                            <tr>
+                                <td colspan="8" class="text-center text-muted">Loading bookings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tab 3: FlyEasy Rewards Section -->
+        <section class="dashboard-section" id="sec-rewards">
+            <div class="rewards-layout">
+                <!-- Left: Rewards stats card -->
+                <div class="rewards-summary-card glassmorphism glowing-card-blue">
+                    <div class="rewards-badge">Gold Tier Member</div>
+                    <h2 class="rewards-title">FlyEasy Rewards</h2>
+                    <p class="rewards-desc">Fly more to earn points and unlock premium benefits like lounge access and baggage waiver.</p>
+                    
+                    <div class="points-row">
+                        <div class="points-box">
+                            <span class="points-val" id="rewards-points">12,850</span>
+                            <span class="points-lbl">Available Points</span>
+                        </div>
+                        <div class="points-box">
+                            <span class="points-val">15</span>
+                            <span class="points-lbl">Flights Completed</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Benefits list -->
+                <div class="rewards-benefits-card glassmorphism">
+                    <h3>Your Tier Benefits</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <span class="benefit-icon">✔</span>
+                            <div>
+                                <strong>Complimentary Lounge Access</strong>
+                                <p>Access premium partner airport lounges worldwide.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✔</span>
+                            <div>
+                                <strong>Priority Check-in &amp; Boarding</strong>
+                                <p>Skip the queues with dedicated Gold check-in desks.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✔</span>
+                            <div>
+                                <strong>Extra Baggage Allowance</strong>
+                                <p>Add +10kg to your standard weight allowance for free.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Boarding Pass Preview Modal Overlay -->
+    <div class="modal-overlay" id="boarding-pass-modal">
+        <div class="modal-card boarding-pass-card scroll-reveal">
+            <!-- Modal Header -->
+            <div class="modal-close-row">
+                <button class="modal-close-btn" id="btn-close-modal" aria-label="Close Modal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Premium Boarding Pass Container -->
+            <div class="pass-container" id="boarding-pass-print-area">
+                <!-- Pass Header -->
+                <div class="pass-header">
+                    <div class="pass-logo-box">
+                        <svg class="pass-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                        </svg>
+                        <span>FlyEasy Airways</span>
+                    </div>
+                    <div class="pass-title-box">
+                        <span>BOARDING PASS</span>
+                    </div>
+                </div>
+
+                <!-- Pass Content -->
+                <div class="pass-body">
+                    <!-- Row 1: Passenger and Flight -->
+                    <div class="pass-grid">
+                        <div class="pass-col">
+                            <span class="pass-lbl">Passenger</span>
+                            <strong class="pass-val" id="bp-passenger">Jiya Deshmukh</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl">Flight</span>
+                            <strong class="pass-val" id="bp-flight">FE201</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl">PNR</span>
+                            <strong class="pass-val text-accent" id="bp-pnr">FX82MN</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl">Seat</span>
+                            <strong class="pass-val" id="bp-seat">12A</strong>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Origin & Destination with times -->
+                    <div class="pass-route-row">
+                        <div class="pass-route-point">
+                            <span class="pass-lbl" id="bp-origin-city">Delhi</span>
+                            <strong class="pass-route-time" id="bp-dep-time">09:55 AM</strong>
+                        </div>
+                        <div class="pass-route-connector">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="connector-plane">
+                                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+                            </svg>
+                            <div class="connector-line"></div>
+                        </div>
+                        <div class="pass-route-point text-right">
+                            <span class="pass-lbl" id="bp-dest-city">Mumbai</span>
+                            <strong class="pass-route-time" id="bp-arr-time">12:05 PM</strong>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Boarding time details -->
+                    <div class="pass-grid highlight-grid">
+                        <div class="pass-col">
+                            <span class="pass-lbl text-dark">Terminal</span>
+                            <strong class="pass-val text-dark" id="bp-terminal">2</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl text-dark">Gate</span>
+                            <strong class="pass-val text-dark" id="bp-gate">B14</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl text-dark">Boarding Time</span>
+                            <strong class="pass-val text-dark text-accent-dark" id="bp-boarding-time">09:20 AM</strong>
+                        </div>
+                        <div class="pass-col">
+                            <span class="pass-lbl text-dark">Date</span>
+                            <strong class="pass-val text-dark" id="bp-date">5 Jul 2026</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pass Footer / Barcode -->
+                <div class="pass-footer">
+                    <div class="barcode-container">
+                        <!-- Barcode lines -->
+                        <div class="barcode-graphic"></div>
+                        <span class="barcode-text" id="bp-barcode-text">FX82MN12A</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print Actions -->
+            <div class="modal-actions-row">
+                <button class="btn btn-primary" id="btn-print-boarding-pass">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span>Print Boarding Pass</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 FlyEasy Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Files -->
+    <script type="module" src="./checkin.js"></script>
+</body>
+</html>

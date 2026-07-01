@@ -109,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 3. Form Submission handler ---
     const form = document.getElementById('passenger-info-form');
-    const successModal = document.getElementById('success-booking-modal');
     
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -118,34 +117,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = document.getElementById('p1-title').value;
         const first = document.getElementById('p1-first').value.trim();
         const last = document.getElementById('p1-last').value.trim();
+        const gender = document.getElementById('p1-gender').value;
+        const dob = document.getElementById('p1-dob').value;
+        const nationality = document.getElementById('p1-nationality').value.trim();
+        const docNo = document.getElementById('p1-doc-no').value.trim();
+        const seat = document.getElementById('p1-seat').value;
+        const meal = document.getElementById('p1-meal').value;
+        const wheelchair = document.getElementById('pref-wheelchair').checked;
+
         const email = document.getElementById('contact-email').value.trim();
-        
-        const fullName = `${title}. ${first} ${last}`;
-        const flight = bookingData.flight;
-        
-        // Generate mock PNR Reference code (e.g. FE + 4 uppercase hex/digits)
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        let randomChars = '';
-        for (let i = 0; i < 4; i++) {
-            randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
-        }
-        const pnr = `FE${randomChars}`;
+        const phone = document.getElementById('contact-phone').value.trim();
+        const country = document.getElementById('contact-country').value.trim();
+        const city = document.getElementById('contact-city').value.trim();
 
-        // Populate Success card details
-        document.getElementById('success-flight-no').textContent = flight.flightNo;
-        document.getElementById('success-route').innerHTML = `${flight.fromCode} &rarr; ${flight.toCode}`;
-        document.getElementById('success-passenger-name').textContent = fullName;
-        document.getElementById('success-pnr').textContent = pnr;
+        const passengerDetails = {
+            title,
+            first,
+            last,
+            fullName: `${title}. ${first} ${last}`,
+            gender,
+            dob,
+            nationality,
+            docNo,
+            seat,
+            meal,
+            wheelchair,
+            email,
+            phone,
+            country,
+            city
+        };
 
-        // Show modal overlay
-        successModal.classList.add('active');
-    });
+        // Save to localStorage
+        localStorage.setItem('flyeasy_passenger_details', JSON.stringify(passengerDetails));
 
-    // --- 4. Return to Homepage click handler ---
-    document.getElementById('btn-return-home').addEventListener('click', () => {
-        // Clean bookings and redirect
-        localStorage.removeItem('flyeasy_selected_flight');
-        window.location.href = 'index.html';
+        // Redirect to payment page
+        window.location.href = 'payment.html';
     });
 
     // --- 5. Fetch and Auto-fill User Profile Data ---

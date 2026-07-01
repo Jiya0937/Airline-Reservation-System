@@ -12,6 +12,8 @@ export default defineConfig({
         login: resolve(__dirname, 'login.html'),
         signup: resolve(__dirname, 'signup.html'),
         profile: resolve(__dirname, 'profile.html'),
+        payment: resolve(__dirname, 'payment.html'),
+        checkin: resolve(__dirname, 'checkin.html'),
       }
     }
   }

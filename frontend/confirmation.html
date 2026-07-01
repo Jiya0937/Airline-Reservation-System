@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlyEasy Flight Booking Confirmed - View details, download E-Ticket, and manage boarding passes.">
+    <title>FlyEasy - Booking Confirmed</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./confirmation.css">
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="navbar-container scrolled" id="navbar">
+        <nav class="navbar">
+            <!-- Left: Logo & Brand -->
+            <a href="index.html" class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-name">FlyEasy</span>
+            </a>
+
+            <!-- Center Navigation Links -->
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#book" class="nav-link">Book</a></li>
+                <li class="nav-item"><a href="checkin.html" class="nav-link" id="nav-trips-link">Trips</a></li>
+                <li class="nav-item"><a href="index.html#deals" class="nav-link">Deals &amp; Offers</a></li>
+                <li class="nav-item"><a href="checkin.html" class="nav-link" id="nav-checkin-link">Check-in</a></li>
+                <li class="nav-item">
+                    <a href="checkin.html" class="nav-link special-rewards" id="nav-rewards-link">
+                        FlyEasy Rewards
+                        <span class="pulse-dot"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right: Profile / Logout -->
+            <div class="nav-actions">
+                <a href="checkin.html" class="nav-action-btn profile-btn" title="Dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="action-icon">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+                <button class="btn btn-outline btn-sm" id="btn-logout">Log Out</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Confirmation Container -->
+    <main class="confirmation-main-container">
+        <!-- Background Glow Spheres -->
+        <div class="glow-sphere glow-1"></div>
+        <div class="glow-sphere glow-2"></div>
+
+        <!-- Success Header Card -->
+        <div class="success-header-card glassmorphism">
+            <div class="success-icon-container">
+                <div class="success-icon-glow"></div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="success-svg">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <h1 class="success-title">Thank You For Booking With FlyEasy!</h1>
+            <p class="success-subtitle">Your reservation has been confirmed successfully.</p>
+            <p class="success-email-notice">Your e-ticket and booking confirmation have been sent to your registered email address.</p>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="details-grid-layout">
+            <!-- Booking Information Card -->
+            <div class="details-card glassmorphism" id="booking-info-card">
+                <h3 class="card-section-title">Booking Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="info-label">Booking ID</span>
+                        <span class="info-value" id="booking-id-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">PNR</span>
+                        <span class="info-value accent-sky" id="pnr-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Passenger</span>
+                        <span class="info-value" id="passenger-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Flight</span>
+                        <span class="info-value" id="flight-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Airline</span>
+                        <span class="info-value" id="airline-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Route</span>
+                        <span class="info-value" id="route-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Travel Date</span>
+                        <span class="info-value" id="travel-date-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Departure</span>
+                        <span class="info-value" id="departure-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Arrival</span>
+                        <span class="info-value" id="arrival-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Seat</span>
+                        <span class="info-value" id="seat-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Terminal</span>
+                        <span class="info-value" id="terminal-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Gate</span>
+                        <span class="info-value" id="gate-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Class</span>
+                        <span class="info-value" id="class-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Payment Status</span>
+                        <span class="info-value text-green" id="payment-status-val">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Booking Status</span>
+                        <span class="info-value text-green" id="booking-status-val">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fare Summary Card -->
+            <div class="details-card glassmorphism" id="fare-summary-card">
+                <h3 class="card-section-title">Fare Summary</h3>
+                <div class="fare-rows">
+                    <div class="fare-row">
+                        <span class="fare-label">Base Fare</span>
+                        <span class="fare-value" id="base-fare-val">-</span>
+                    </div>
+                    <div class="fare-row">
+                        <span class="fare-label">Taxes</span>
+                        <span class="fare-value" id="taxes-val">-</span>
+                    </div>
+                    <div class="fare-row">
+                        <span class="fare-label">Discount</span>
+                        <span class="fare-value text-green" id="discount-val">-</span>
+                    </div>
+                    <div class="fare-row divider"></div>
+                    <div class="fare-row total">
+                        <span class="fare-label">Total Paid</span>
+                        <span class="fare-value accent-sky" id="total-val">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons-row">
+            <button class="btn btn-primary" id="btn-my-bookings">Go To My Bookings</button>
+            <button class="btn btn-outline" id="btn-download-eticket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="btn-icon">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                <span>Download E-Ticket</span>
+            </button>
+            <a href="index.html" class="btn btn-outline" id="btn-book-another">Book Another Flight</a>
+        </div>
+    </main>
+
+    <!-- JS Scripts -->
+    <script src="./confirmation.js"></script>
+</body>
+</html>

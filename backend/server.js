@@ -1,19 +1,31 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
+import bookingRoutes from './routes/bookingRoutes.js';
 import { mockFlights } from './utils/flightsData.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5173;
 
 app.use(cors());
 app.use(express.json());
 
+// Serve static tickets folder
+app.use('/tickets', express.static(path.join(__dirname, 'public/tickets')));
+
 // Auth Routes
 app.use('/api/auth', authRoutes);
+
+// Booking, Payment, Checkin, and History Routes
+app.use('/api', bookingRoutes);
 
 
 // API Flight Search Route
