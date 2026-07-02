@@ -73,11 +73,25 @@ export const createBooking = async (req, res) => {
       }
     }
 
+    // Parse flightId to ensure SQLite compatibility (handle string IDs like "flight-card-X")
+    let parsedFlightId = 1;
+    if (typeof flightId === 'string' && flightId.startsWith('flight-card-')) {
+      const idx = parseInt(flightId.replace('flight-card-', ''));
+      if (!isNaN(idx)) {
+        parsedFlightId = idx + 1;
+      }
+    } else {
+      const parsed = parseInt(flightId);
+      if (!isNaN(parsed)) {
+        parsedFlightId = parsed;
+      }
+    }
+
     // Fetch flight details to get flight_number and airline
     let flightNumber = 'FE-201';
     let airline = 'FlyEasy Airways';
     try {
-      const [flights] = await db.query('SELECT flight_number, airline FROM flights WHERE id = ?', [flightId]);
+      const [flights] = await db.query('SELECT flight_number, airline FROM flights WHERE id = ?', [parsedFlightId]);
       if (flights && flights[0]) {
         flightNumber = flights[0].flight_number;
         airline = flights[0].airline;
@@ -124,7 +138,7 @@ export const createBooking = async (req, res) => {
     const bookingId = await Booking.create({
       pnr,
       userId,
-      flightId,
+      flightId: parsedFlightId,
       passengerName,
       email,
       mobile,

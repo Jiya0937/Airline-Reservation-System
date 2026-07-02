@@ -28,6 +28,20 @@ class Booking {
     nationality = null,
     passportNumber = null
   }) {
+    // Parse flightId to ensure SQLite compatibility (handle string IDs like "flight-card-X")
+    let parsedFlightId = 1;
+    if (typeof flightId === 'string' && flightId.startsWith('flight-card-')) {
+      const idx = parseInt(flightId.replace('flight-card-', ''));
+      if (!isNaN(idx)) {
+        parsedFlightId = idx + 1;
+      }
+    } else {
+      const parsed = parseInt(flightId);
+      if (!isNaN(parsed)) {
+        parsedFlightId = parsed;
+      }
+    }
+
     // Start a transaction to ensure atomic seat decrease and booking creation
     const connection = await db.getConnection();
     try {
@@ -43,7 +57,7 @@ class Booking {
           gender, dob, nationality, passport_number
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
-          pnr, userId, flightId, passengerName, email, mobile,
+          pnr, userId, parsedFlightId, passengerName, email, mobile,
           departure, destination, travelDate, departureTime, arrivalTime,
           seatNumber, meal, fare, paymentStatus, bookingStatus,
           ticketPdfPath, terminal, gate, transactionId, cabinClass,
@@ -54,13 +68,8 @@ class Booking {
 
       // 2. Decrease available seats for the flight
       await connection.query(
-        'UPDATE flights SET available_seats = GREATER_THAN_ZERO(available_seats - 1) WHERE id = ?',
-        [flightId]
-      );
-      // Fallback query in case custom SQL function is not defined:
-      await connection.query(
         'UPDATE flights SET available_seats = CASE WHEN available_seats > 0 THEN available_seats - 1 ELSE 0 END WHERE id = ?',
-        [flightId]
+        [parsedFlightId]
       );
 
       await connection.commit();
@@ -105,7 +114,7 @@ class Booking {
       `SELECT b.*, f.flight_number, f.airline, f.aircraft 
        FROM bookings b 
        LEFT JOIN flights f ON b.flight_id = f.id 
-       WHERE b.user_id = ? AND (b.booking_status = 'Cancelled' OR b.travel_date < CURRENT_DATE())
+       WHERE b.user_id = ? AND (b.booking_status = 'Cancelled' OR b.travel_date < CURRENT_DATE)
        ORDER BY b.travel_date DESC`,
       [userId]
     );
