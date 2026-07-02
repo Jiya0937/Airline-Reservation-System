@@ -2,6 +2,7 @@
    FLYEASY - PAYMENT PAGE JS CONTROLLER
    ========================================== */
 import { API_URL } from './config.js';
+import paymentQR from './src/assets/images/payment_qr.png';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Auth Gate ---
@@ -24,6 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (storedPassenger) {
             passengerDetails = JSON.parse(storedPassenger);
+        }
+
+        // Set new QR code image source
+        const qrImg = document.getElementById('qr-code-img');
+        if (qrImg) {
+            qrImg.src = paymentQR;
         }
 
         // Populate page
@@ -364,7 +371,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     .success-circle-svg {
                         width: 110px;
                         height: 110px;
-                        transform: rotate(-45deg);
                     }
                     .circle-dash {
                         stroke-dasharray: 295;
