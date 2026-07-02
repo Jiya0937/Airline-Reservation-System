@@ -1,9 +1,10 @@
 /* ==========================================
    FLYEASY - PROFILE CONTROLLER
    ========================================== */
+import { API_URL as BASE_API_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:5000/api/auth';
+    const API_URL = `${BASE_API_URL}/api/auth`;
     const token = localStorage.getItem('flyeasy_token');
 
     // --- 1. Authentication Gate ---

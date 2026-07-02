@@ -1,6 +1,7 @@
 /* ==========================================
    FLYEASY - PAYMENT PAGE JS CONTROLLER
    ========================================== */
+import { API_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Auth Gate ---
@@ -134,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('qr-expired-overlay').style.display = 'flex';
         // Add blurred filter on QR image
         document.getElementById('qr-code-img').style.filter = 'blur(4px)';
-        
+
         // Update payment status text
         const statusTxt = document.getElementById('status-message-text');
         statusTxt.textContent = 'Payment Session Expired';
@@ -183,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Step C: Send API request to verify payment
-            const verifyRes = await fetch('http://localhost:5000/api/payment/verify', {
+            const verifyRes = await fetch(`${API_URL}/api/payment/verify`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -229,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cabinClass: search.cabinClass || 'Economy'
                 };
 
-                const createRes = await fetch('http://localhost:5000/api/bookings/create', {
+                const createRes = await fetch(`${API_URL}/api/bookings/create`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -450,7 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const overlay = document.createElement('div');
             overlay.className = 'payment-success-overlay';
-            
+
             // Generate some background floating particles
             let particlesHtml = '';
             for (let i = 0; i < 25; i++) {

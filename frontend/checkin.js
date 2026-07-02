@@ -1,6 +1,7 @@
 /* ==========================================
    FLYEASY - PASSENGER DASHBOARD JS CONTROLLER
    ========================================== */
+import { API_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Auth Gate ---
@@ -95,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadUpcomingJourney() {
         const container = document.getElementById('upcoming-container');
         try {
-            const response = await fetch('http://localhost:5000/api/bookings/user', {
+            const response = await fetch(`${API_URL}/api/bookings/user`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -288,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadTravelHistory() {
         const grid = document.getElementById('history-grid');
         try {
-            const response = await fetch('http://localhost:5000/api/history', {
+            const response = await fetch(`${API_URL}/api/history`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -371,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadAllBookingsTable() {
         const tbody = document.getElementById('bookings-table-body');
         try {
-            const response = await fetch('http://localhost:5000/api/bookings/user', {
+            const response = await fetch(`${API_URL}/api/bookings/user`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function openBoardingPassModal(pnr) {
         try {
-            const response = await fetch(`http://localhost:5000/api/boarding-pass/${pnr}`, {
+            const response = await fetch(`${API_URL}/api/boarding-pass/${pnr}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -544,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         try {
-            const url = `http://localhost:5000${ticketPath}`;
+            const url = `${API_URL}${ticketPath}`;
             const link = document.createElement('a');
             link.href = url;
             link.target = '_blank';
@@ -561,7 +562,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.cancelBookingClick = async function(pnr) {
         if (confirm(`Are you sure you want to CANCEL booking reference ${pnr}?\nThis will release your seat and issue a full refund.`)) {
             try {
-                const response = await fetch('http://localhost:5000/api/bookings/cancel', {
+                const response = await fetch(`${API_URL}/api/bookings/cancel`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

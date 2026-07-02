@@ -1,9 +1,10 @@
 /* ==========================================
    FLYEASY - SIGNUP CONTROLLER
    ========================================== */
+import { API_URL as BASE_API_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const API_URL = 'http://localhost:5000/api/auth';
+    const API_URL = `${BASE_API_URL}/api/auth`;
 
     // --- 1. Country Selection List ---
     const countries = [

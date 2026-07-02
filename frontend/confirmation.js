@@ -1,6 +1,7 @@
 /* ==========================================
    FLYEASY - BOOKING CONFIRMATION JS CONTROLLER
    ========================================== */
+import { API_URL } from './config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Auth Gate ---
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!timeStr) return '';
         // If already formatted with AM/PM, return as is
         if (timeStr.includes('AM') || timeStr.includes('PM')) return timeStr;
-        
+
         const parts = timeStr.split(':');
         if (parts.length < 2) return timeStr;
         let hours = parseInt(parts[0], 10);
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Fetch Booking Details ---
     async function fetchBookingDetails() {
         try {
-            const response = await fetch(`http://localhost:5000/api/boarding-pass/${pnr}`, {
+            const response = await fetch(`${API_URL}/api/boarding-pass/${pnr}`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -77,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateDetails(booking) {
         // Passenger title format normalization
         document.getElementById('passenger-val').textContent = booking.passengerName;
-        
+
         // PNR and Booking ID
         document.getElementById('booking-id-val').textContent = `FLY${booking.bookingId}`;
         document.getElementById('pnr-val').textContent = booking.pnr;
@@ -86,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('flight-val').textContent = booking.flightNumber;
         document.getElementById('airline-val').textContent = booking.airline || 'FlyEasy Airways';
         document.getElementById('route-val').textContent = `${booking.departure} → ${booking.destination}`;
-        
+
         // Date & Times
         document.getElementById('travel-date-val').textContent = formatDateFull(booking.travelDate);
         document.getElementById('departure-val').textContent = formatTimeTo12Hr(booking.departureTime);
@@ -122,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Action Button Handlers ---
-    
+
     // Go to My Bookings
     document.getElementById('btn-my-bookings').addEventListener('click', () => {
         window.location.href = 'checkin.html';
@@ -134,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('No ticket PDF generated yet. Please visit your trips dashboard to re-generate.');
             return;
         }
-        
+
         try {
-            const url = `http://localhost:5000${bookingData.ticketPdfPath}`;
+            const url = `${API_URL}${bookingData.ticketPdfPath}`;
             const link = document.createElement('a');
             link.href = url;
             link.target = '_blank';
